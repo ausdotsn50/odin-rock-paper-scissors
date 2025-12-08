@@ -25,6 +25,7 @@ pickPara.id = "pick-id"
 pickContainer.appendChild(pickPara);
 
 const choicesContainer = document.createElement("div");
+choicesContainer.id = "choices-id";
 const choices = ["Rock", "Paper", "Scissor"];
 const createButtons = () => { 
     for (ch of choices) { 
