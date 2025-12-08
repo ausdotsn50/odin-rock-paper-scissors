@@ -1,13 +1,13 @@
-.header, .pick, .result {
+.header, .pick, .result, .tally {
     margin: 20px;
     border: 4px solid black;
 }
 
-.pick, .result {
+.pick, .result, .tally, #newG-id {
     padding: 20px;
 }
 
-.header {
+.header, #round-id {
     text-align: center;
 }
 
@@ -18,7 +18,7 @@
     align-items: center;
 }
 
-#pick-id {
+#pick-id, #round-id {
     font-size: 25px;
     font-weight: bold;
     margin: 0 ;
@@ -57,4 +57,16 @@
     
     font: 20px;
     font-weight: bold;
+}
+
+#newG-id {
+    text-align: center;
+}
+
+#newG-btn {
+    font-size: 30px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    border: 1px solid grey;
+    padding: 10px 30px;
 }
