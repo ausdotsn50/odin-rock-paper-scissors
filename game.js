@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 const rounds = 5;
 const container = document.querySelector("#container");
 
@@ -38,57 +41,58 @@ const createButtons = () => {
 createButtons();
 pickContainer.appendChild(choicesContainer);
 
-// Tally container
-const tallyContainer = document.createElement("div");
-tallyContainer.classList.add("tally");
+// result container
+const resultContainer = document.createElement("div");
+resultContainer.classList.add("result");
 
-const tallyLeft = document.createElement("div");
-tallyLeft.classList.add("left");
+const resultLeft = document.createElement("div");
+resultLeft.classList.add("left");
 
-const tallyRight = document.createElement("div");
-tallyRight.classList.add("right");
+const resultRight = document.createElement("div");
+resultRight.classList.add("right");
 
 const human = document.createElement("p"); 
 human.textContent = "Player's pick: ";
+const humanSpan = document.createElement("span");
+human.appendChild(humanSpan);
+
 const computer = document.createElement("p"); 
 computer.textContent = "Computer's pick: ";
+const compSpan = document.createElement("span");
+computer.appendChild(compSpan);
 
-// Appending human and computer scores left of Tally container
-tallyLeft.appendChild(human);
-tallyLeft.appendChild(computer);
+// Appending human and computer scores left of result container
+resultLeft.appendChild(human);
+resultLeft.appendChild(computer);
 
-tallyContainer.appendChild(tallyLeft);
-tallyContainer.appendChild(tallyRight);
+resultContainer.appendChild(resultLeft);
+resultContainer.appendChild(resultRight);
 
 const tempVerdict = document.createElement("p");
-tempVerdict.textContent = "You Win! Paper beats Rock";
-
-tallyRight.appendChild(tempVerdict);
+tempVerdict.textContent = " ";
+resultRight.appendChild(tempVerdict);
 
 // Div sections
 container.appendChild(headerContainer);
 container.appendChild(pickContainer);
-container.appendChild(tallyContainer);
+container.appendChild(resultContainer);
 
 /* Functionalities section */
-let humanScore = 0;
-let computerScore = 0;
-
 const buttons = choicesContainer.children;
 
-const computerChoice = () => {
-    let choice = Math.floor(Math.random() * 3);
-    return choice === 0 ? "rock" : choice === 1 ? "paper" : choice === 2 ? "scissor" : undefined;
-}
 
-for(b of buttons) {
+for(let i = 0; i < buttons.length; i++) {
+    let b = buttons[i];
     b.addEventListener('click', (event) => {
         event.preventDefault();
         playRound(b.textContent, computerChoice());
     });
 }
 
-
+const computerChoice = () => {
+    let choice = Math.floor(Math.random() * 3);
+    return choice === 0 ? "rock" : choice === 1 ? "paper" : choice === 2 ? "scissor" : undefined;
+}
 
 /*
 const getHumanChoice = () => { 
@@ -98,20 +102,25 @@ const getHumanChoice = () => {
 */
 
 function playRound(humanChoice, computerChoice) {
-    if(humanChoice === computerChoice) {
-        tempVerdict.textContent = "Tie";
-    } else if ( humanChoice === "rock" && computerChoice == "paper" || 
-                humanChoice === "paper" && computerChoice === "scissor" ||
-                humanChoice === "scissor" && computerChoice === "rock") {
+    let lower = humanChoice.toLowerCase();
+    humanSpan.textContent = humanChoice;
+
+    let capital = computerChoice; capital = capital.charAt(0).toUpperCase() + capital.slice(1);
+    compSpan.textContent = capital;    
+    if(lower === computerChoice) {
+        tempVerdict.textContent = "Draw! You both chose " + capital;
+    } else if ( lower === "rock" && computerChoice == "paper" || 
+                lower === "paper" && computerChoice === "scissor" ||
+                lower === "scissor" && computerChoice === "rock") {
                     
-        tempVerdict.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
+        tempVerdict.textContent = "You lose! " + capital + " beats " + humanChoice;
         computerScore++;
     } else {
-        tempVerdict.textContent = "You Win! " + humanChoice + " beats " + computerChoice;
+        tempVerdict.textContent = "You Win! " + humanChoice + " beats " + capital;
         humanScore++;
     }
 
-    console.log("Score Tally\nHuman: " + humanScore + "\nComputer: " + computerScore);
+    console.log("Score result\nHuman: " + humanScore + "\nComputer: " + computerScore);
 }
 
 
