@@ -1,14 +1,43 @@
 const rounds = 5;
 const container = document.querySelector("#container");
 
+// Section for header
+const headerContainer = document.createElement("div");
+headerContainer.classList.add("header"); // Class addition to header elements
+
 const title = document.createElement("h1");
 title.textContent = "Rock, Paper, Scissors";
 
-const subTitle = document.createElement("h3");
+const subTitle = document.createElement("h2");
 subTitle.textContent = "Best of " + rounds;
 
-container.appendChild(title);
-container.appendChild(subTitle);
+headerContainer.appendChild(title);
+headerContainer.appendChild(subTitle);
+
+// Section for button picks
+const pickContainer = document.createElement("div");
+pickContainer.classList.add("pick");
+
+const pickPara = document.createElement("p");
+pickPara.textContent = "PICK YOUR MOVE!";
+pickPara.id = "pick-id"
+
+pickContainer.appendChild(pickPara);
+
+const choicesContainer = document.createElement("div");
+const choices = ["Rock", "Paper", "Scissor"];
+const createButtons = () => { 
+    for (ch of choices) { 
+        const button = document.createElement("button");
+        button.textContent = ch;
+        choicesContainer.appendChild(button);
+    }
+}
+createButtons();
+pickContainer.appendChild(choicesContainer);
+
+container.appendChild(headerContainer);
+container.appendChild(pickContainer);
 
 /*
 // Global var
