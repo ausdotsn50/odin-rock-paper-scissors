@@ -89,7 +89,7 @@ function playGame() {
     resultRight.classList.add("right");
 
     const human = document.createElement("p"); 
-    human.textContent = "Player's pick: ";
+    human.textContent = "Player's pick: "
     const humanSpan = document.createElement("span");
     human.appendChild(humanSpan);
 
@@ -105,8 +105,7 @@ function playGame() {
     resultContainer.appendChild(resultLeft);
     resultContainer.appendChild(resultRight);
 
-    const tempVerdict = document.createElement("p");
-    tempVerdict.textContent = " ";
+    const tempVerdict = document.createElement("p");    
     resultRight.appendChild(tempVerdict);
 
     tallyContainer = document.createElement("div");
@@ -114,9 +113,20 @@ function playGame() {
 
     const roundTxt = document.createElement("p");
     roundTxt.id = "round-id";
-    roundTxt.textContent = "Round " + round;
+    roundTxt.textContent = "---";
+
+    const scoreDiv = document.createElement("div");
+    scoreDiv.classList.add("score");
+    const pScore = document.createElement("p");
+    pScore.textContent = "Player's Score: " + humanScore;
+    const cScore = document.createElement("p");
+    cScore.textContent = "Computer's Score: " + computerScore;
+
+    scoreDiv.appendChild(pScore);
+    scoreDiv.appendChild(cScore);
 
     tallyContainer.appendChild(roundTxt);
+    tallyContainer.appendChild(scoreDiv);
     
     // Div sections
     container.appendChild(resultContainer);
@@ -129,14 +139,21 @@ function playGame() {
         let b = buttons[i];
         b.addEventListener('click', (event) => {
             event.preventDefault();
-            if(round < rounds) {
+            if(round < rounds){
                 playRound(b.textContent, computerChoice());
-                round++;
                 roundTxt.textContent = "Round " + round;
+                round++;
             } else if(round === rounds) {
-                newGameOpt();
                 roundTxt.textContent = "Round " + round;
                 round++;
+
+                newGameOpt();
+
+                // logic for...
+                const finalVerdict = document.createElement("p");
+                finalVerdict.textContent = pickWinner(humanScore, computerScore);
+                finalVerdict.style.textAlign = "center";
+                tallyContainer.appendChild(finalVerdict);
             }
         });
     }
@@ -146,6 +163,8 @@ function playGame() {
         let choice = Math.floor(Math.random() * 3);
         return choice === 0 ? "rock" : choice === 1 ? "paper" : choice === 2 ? "scissor" : undefined;
     }
+
+    const pickWinner = (human, comp) => human>comp ? "Player wins!" : comp>human? "Computer wins!" : "It's a tie!";
 
     function playRound(humanChoice, computerChoice) {
         let lower = humanChoice.toLowerCase();
@@ -160,10 +179,13 @@ function playGame() {
                     lower === "scissor" && computerChoice === "rock") {
                         
             tempVerdict.textContent = "You lose! " + capital + " beats " + humanChoice;
+            
             computerScore++;
+            cScore.textContent = "Computer's Score: " + computerScore;
         } else {
             tempVerdict.textContent = "You Win! " + humanChoice + " beats " + capital;
             humanScore++;
+            pScore.textContent = "Player's Score: " + humanScore;
         }
 
         console.log("Score result\nHuman: " + humanScore + "\nComputer: " + computerScore);
