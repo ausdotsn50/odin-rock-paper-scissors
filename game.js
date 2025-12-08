@@ -1,3 +1,16 @@
+const rounds = 5;
+const container = document.querySelector("#container");
+
+const title = document.createElement("h1");
+title.textContent = "Rock, Paper, Scissors";
+
+const subTitle = document.createElement("h3");
+subTitle.textContent = "Best of " + rounds;
+
+container.appendChild(title);
+container.appendChild(subTitle);
+
+/*
 // Global var
 let humanScore = 0;
 let computerScore = 0;
@@ -48,4 +61,4 @@ playGame();
 
 // console.log(["rock", "paper", "scissors"].length)
 // Play 5 rounds of Rock, Paper, Scissor
-
+*/
