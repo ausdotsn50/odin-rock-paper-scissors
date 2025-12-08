@@ -37,8 +37,37 @@ const createButtons = () => {
 createButtons();
 pickContainer.appendChild(choicesContainer);
 
+// Tally container
+const tallyContainer = document.createElement("div");
+tallyContainer.classList.add("tally");
+
+const tallyLeft = document.createElement("div");
+tallyLeft.classList.add("left");
+
+const tallyRight = document.createElement("div");
+tallyRight.classList.add("right");
+
+const human = document.createElement("p"); 
+human.textContent = "Player's pick: ";
+const computer = document.createElement("p"); 
+computer.textContent = "Computer's pick: ";
+
+// Appending human and computer scores left of Tally container
+tallyLeft.appendChild(human);
+tallyLeft.appendChild(computer);
+
+tallyContainer.appendChild(tallyLeft);
+tallyContainer.appendChild(tallyRight);
+
+const tempVerdict = document.createElement("p");
+tempVerdict.textContent = "You Win! Paper beats Rock";
+
+tallyRight.appendChild(tempVerdict);
+
+// Div sections
 container.appendChild(headerContainer);
 container.appendChild(pickContainer);
+container.appendChild(tallyContainer);
 
 /*
 // Global var
