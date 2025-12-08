@@ -34,6 +34,7 @@ const createButtons = () => {
         choicesContainer.appendChild(button);
     }
 }
+
 createButtons();
 pickContainer.appendChild(choicesContainer);
 
@@ -69,41 +70,55 @@ container.appendChild(headerContainer);
 container.appendChild(pickContainer);
 container.appendChild(tallyContainer);
 
-/*
-// Global var
+/* Functionalities section */
 let humanScore = 0;
 let computerScore = 0;
 
+const buttons = choicesContainer.children;
+
 const computerChoice = () => {
     let choice = Math.floor(Math.random() * 3);
-    // console.log(choice);
     return choice === 0 ? "rock" : choice === 1 ? "paper" : choice === 2 ? "scissor" : undefined;
 }
 
+for(b of buttons) {
+    b.addEventListener('click', (event) => {
+        event.preventDefault();
+        playRound(b.textContent, computerChoice());
+    });
+}
+
+
+
+/*
 const getHumanChoice = () => { 
     const response = prompt("rock, paper, or scissor?");
     return response !== null ? response.toLowerCase() : "";
 }
+*/
 
-const pickWinner = (human, comp) => human>comp ? "Human wins!" : comp>human? "Computer wins!" : "It's a tie!";
-
-// Play a round
 function playRound(humanChoice, computerChoice) {
     if(humanChoice === computerChoice) {
-        console.log("Tie");
+        tempVerdict.textContent = "Tie";
     } else if ( humanChoice === "rock" && computerChoice == "paper" || 
                 humanChoice === "paper" && computerChoice === "scissor" ||
                 humanChoice === "scissor" && computerChoice === "rock") {
                     
-        console.log("You lose! " + computerChoice + " beats " + humanChoice);
+        tempVerdict.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
         computerScore++;
     } else {
-        console.log("You Win! " + humanChoice + " beats " + computerChoice);
+        tempVerdict.textContent = "You Win! " + humanChoice + " beats " + computerChoice;
         humanScore++;
     }
 
     console.log("Score Tally\nHuman: " + humanScore + "\nComputer: " + computerScore);
 }
+
+
+/*
+const pickWinner = (human, comp) => human>comp ? "Human wins!" : comp>human? "Computer wins!" : "It's a tie!";
+
+// Play a round
 
 function playGame() {
     let hc, cc;
