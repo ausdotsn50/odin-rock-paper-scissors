@@ -129,17 +129,19 @@ function playGame() {
         let b = buttons[i];
         b.addEventListener('click', (event) => {
             event.preventDefault();
-            if(round !== rounds+1) {
+            if(round < rounds) {
                 playRound(b.textContent, computerChoice());
+                round++;
+                roundTxt.textContent = "Round " + round;
+            } else if(round === rounds) {
+                newGameOpt();
+                roundTxt.textContent = "Round " + round;
+                round++;
             }
-            round++;
         });
     }
     
-    if(round === rounds+1) {
-        newGameOpt();
-    }
-    
+    // newGameOpt();
     const computerChoice = () => {
         let choice = Math.floor(Math.random() * 3);
         return choice === 0 ? "rock" : choice === 1 ? "paper" : choice === 2 ? "scissor" : undefined;
@@ -166,6 +168,4 @@ function playGame() {
 
         console.log("Score result\nHuman: " + humanScore + "\nComputer: " + computerScore);
     }
-
-    round += 1;
 }
