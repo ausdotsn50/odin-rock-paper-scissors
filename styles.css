@@ -1,5 +1,6 @@
 #container {
     display: flex;
+    flex: 1;
     flex-direction: column;
     flex-wrap: wrap;    
 }
@@ -79,4 +80,18 @@
 
 .score {
     text-align: center;
+}
+
+.footer {
+    text-align: center;
+}
+
+body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    
+    
+    height: 100vh;
+    width: auto;
 }

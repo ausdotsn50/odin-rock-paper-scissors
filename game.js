@@ -3,6 +3,7 @@ const rounds = 5;
 let humanScore = 0, computerScore = 0, round = 1;
 let pickContainer = null, resultContainer = null, tallyContainer = null;
 
+const body = document.querySelector("body");
 const container = document.querySelector("#container");
 // Section for header
 const headerContainer = document.createElement("div");
@@ -20,6 +21,14 @@ container.appendChild(headerContainer);
 
 // Add new game opt here
 newGameOpt();
+
+const footerContainer = document.createElement("div");
+footerContainer.classList.add("footer");
+const footer = document.createElement("p");
+footer.innerHTML = "<strong>Copyright &#169; ausdotsn50 2025</strong>";
+footerContainer.appendChild(footer);
+body.appendChild(footerContainer);
+
 
 function initGame() {
     if(pickContainer !== null || resultContainer !== null || tallyContainer !== null) {
