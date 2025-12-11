@@ -90,8 +90,19 @@ body {
     display: flex;
     flex: 1;
     flex-direction: column;
-    
-    
+    margin: 0;
     height: 100vh;
     width: auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+} 
+
+#footer-icon {
+    width: 16px; 
+    height: 16px;
 }

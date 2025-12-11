@@ -24,9 +24,15 @@ newGameOpt();
 
 const footerContainer = document.createElement("div");
 footerContainer.classList.add("footer");
-const footer = document.createElement("p");
-footer.innerHTML = "<strong>Copyright &#169; ausdotsn50 2025</strong>";
-footerContainer.appendChild(footer);
+const footer1 = document.createElement("p");
+footer1.innerHTML = "<strong>ausdotsn50</strong>";
+const footer2 = document.createElement("a");
+footer2.innerHTML = '<a href="https://github.com/ausdotsn50/odin-landing-page" target="__blank"><img id="footer-icon" src="https://raw.githubusercontent.com/ausdotsn50/odin-recipes/main/images/github.svg" alt="github-icon"></a>';
+const footer3 = document.createElement("p");
+footer3.innerHTML = "<strong>2025</strong>";
+footerContainer.appendChild(footer1);
+footerContainer.appendChild(footer2);
+footerContainer.appendChild(footer3);
 body.appendChild(footerContainer);
 
 
