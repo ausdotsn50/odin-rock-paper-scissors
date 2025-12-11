@@ -3,7 +3,7 @@ const rounds = 5;
 let humanScore = 0, computerScore = 0, round = 1;
 let pickContainer = null, resultContainer = null, tallyContainer = null;
 
-const body = document.querySelector("body");
+const mainCont = document.querySelector("#main-cont");
 const container = document.querySelector("#container");
 // Section for header
 const headerContainer = document.createElement("div");
@@ -33,7 +33,7 @@ footer3.innerHTML = "<strong>2025</strong>";
 footerContainer.appendChild(footer1);
 footerContainer.appendChild(footer2);
 footerContainer.appendChild(footer3);
-body.appendChild(footerContainer);
+mainCont.appendChild(footerContainer);
 
 
 function initGame() {

@@ -3,6 +3,8 @@
     flex: 1;
     flex-direction: column;
     flex-wrap: wrap;    
+
+    justify-content: center;
 }
 
 .header, .pick, .result, .tally {
@@ -86,13 +88,16 @@
     text-align: center;
 }
 
-body {
+#main-cont {
     display: flex;
     flex: 1;
     flex-direction: column;
-    margin: 0;
     height: 100vh;
     width: auto;
+}
+
+body {
+    margin: 0;
 }
 
 .footer {
